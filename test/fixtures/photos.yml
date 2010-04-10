@@ -4,13 +4,12 @@ library_pic:
   name: library
   description: The MPLS library is so great
   user_id: 1
-  content_type: image/jpg
-  filename: test.jpg
-  size: 274
-  width: 45
-  height: 45
+  avatar_content_type: image/jpg
+  avatar_file_name: test.jpg
+  avatar_file_size: 274
   created_at: <%= Time.now.to_s :db %>
   updated_at: <%= Time.now.to_s :db %>
+  avatar_updated_at: <%= Time.now.to_s :db %>
   album_id: 1
   view_count: 0
   
@@ -19,11 +18,11 @@ another_pic:
   name: another
   description: Something not that idfferent
   user_id: 1
-  content_type: image/jpg
-  filename: test.jpg
-  size: 274
-  width: 45
-  height: 45
+  avatar_content_type: im
+  avatar_file_name: test.
+  avatar_file_size: 274
   created_at: <%= 1.days.ago.to_s :db %>
   created_at: <%= 1.days.ago.to_s :db %>
   view_count: 0
+  avatar_updated_at: <%= Time.now.to_s :db %>
+
