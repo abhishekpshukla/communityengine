@@ -1,13 +1,17 @@
 class HomepageFeature < ActiveRecord::Base  
-  has_attachment prepare_options_for_attachment_fu(AppConfig.feature['attachment_fu_options'])
-  attr_accessible :url, :title, :description
+  has_attached_file :avatar,
+                    :style => AppConfig.photo['paperclip_options']['style'],
+                    :storage =>AppConfig.photo['paperclip_options']['storage']
 
-  validates_presence_of :content_type
-  validates_presence_of :filename
-  validates_presence_of :url, :if => Proc.new{|record| record.parent.nil? }
+  #attr_accessible :url, :title, :description
+
+  validates_attachment_presence :avatar
+  validates_attachment_content_type :avatar, :content_type => AppConfig.photo['paperclip_options']['content_type'], :allow_nil => true
+
+  validates_presence_of :url#, :if => Proc.new{|record| record.parent.nil? }
   
   def self.find_features
-    find(:all, :order => "created_at DESC", :conditions => 'parent_id IS NULL')
+    find(:all, :order => "created_at DESC")
   end
 
 end

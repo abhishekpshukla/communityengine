@@ -241,7 +241,7 @@ class User < ActiveRecord::Base
   
   def avatar_photo_url(size = nil)
     if avatar
-      avatar.public_filename(size)
+      avatar.avatar.url(size)
     else
       case size
         when :thumb

@@ -48,7 +48,7 @@ class Clipping < ActiveRecord::Base
   end
   
   def image_uri(size = '')
-    image && image.public_filename(size) || image_url
+    image && image.avatar.url(size) || image_url
   end
   
   def title_for_rss
@@ -64,7 +64,8 @@ class Clipping < ActiveRecord::Base
     begin
       self.image = ClippingImage.new
       uploaded_data = self.image.data_from_url(self.image_url)
-      self.image.uploaded_data = uploaded_data
+      #self.image.uploaded_data = uploaded_data
+      self.image.avatar = uploaded_data
     rescue
       nil
     end

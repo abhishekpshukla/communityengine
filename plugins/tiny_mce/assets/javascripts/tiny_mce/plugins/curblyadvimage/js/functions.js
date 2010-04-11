@@ -12,7 +12,8 @@ function select_thumb(element) {
 }
 
 function upload_image_callback(url, alt_text, photo_id){
-	$('image_uploaded_data').clear();
+	//$('image_uploaded_data').clear();
+	$('image_avatar').clear();
   new Ajax.Request("/manage_photos?photo_id="+photo_id, {asynchronous:true, evalScripts:true, method:'get'});
 }
 

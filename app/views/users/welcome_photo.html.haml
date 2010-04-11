@@ -20,7 +20,7 @@
             - if @user.vendor?
               =:vendor_avatar_hint.l
             =:photos_should_be_x_pixels.l
-        = file_field :avatar, :uploaded_data, :size => "20"
+        = file_field :avatar, :avatar, :size => "20"
 
         %p
           = submit_tag :upload_and_continue_to_step_two.l

@@ -132,7 +132,7 @@ class PhotosController < BaseController
         format.js {
           responds_to_parent do
             render :update do |page|
-              page << "upload_image_callback('#{@photo.public_filename()}', '#{@photo.display_name}', '#{@photo.id}');"
+              page << "upload_image_callback('#{@photo.avatar.url()}', '#{@photo.display_name}', '#{@photo.id}');"
             end
           end
         }
@@ -154,14 +154,14 @@ class PhotosController < BaseController
 
   def swfupload
     # swfupload action set in routes.rb
-    @photo = Photo.new :uploaded_data => params[:Filedata]
+    @photo = Photo.new :avatar => params[:Filedata]
     @photo.user = current_user
     @photo.album_id =  params[:album_id] if params[:album_id]
     @photo.album_id = params[:album_selected] unless params[:album_selected].blank?
     @photo.save!
 
     # This returns the thumbnail url for handlers.js to use to display the thumbnail
-    render :text => @photo.public_filename(:thumb)
+    render :text => @photo.avatar.url(:thumb)
   rescue
     render :text => "Error: #{$!}", :status => 500
   end
@@ -208,7 +208,7 @@ class PhotosController < BaseController
   protected
 
   def description_for_rss(photo)
-    "<a href='#{user_photo_url(photo.user, photo)}' title='#{photo.name}'><img src='#{photo.public_filename(:large)}' alt='#{photo.name}' /><br />#{photo.description}</a>"
+    "<a href='#{user_photo_url(photo.user, photo)}' title='#{photo.name}'><img src='#{photo.avatar.url(:large)}' alt='#{photo.name}' /><br />#{photo.description}</a>"
   end
 
 end

@@ -8,7 +8,7 @@ module UrlUpload
   end
   
   def validate
-    errors.add("filename", "is invalid") if filename? && %w(index.html index.htm).include?(filename.downcase)
+    errors.add("filename", "is invalid") if avatar_file_name? && %w(index.html index.htm).include?(avatar_file_name.downcase)
   end
       
 end

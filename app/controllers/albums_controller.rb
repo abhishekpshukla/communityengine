@@ -15,7 +15,7 @@ class AlbumsController < BaseController
     @album = Album.find(params[:id])
     update_view_count(@album) if current_user && current_user.id != @album.user_id
     @album_photos = Photo.find(:all, :page => { :start => 1, :current => params[:page], :size => 10 },
-     :conditions => ['album_id = ? AND parent_id IS NULL', params[:id]])
+     :conditions => ['album_id = ?', params[:id]])
    
     respond_to do |format|
       format.html # show.html.erb

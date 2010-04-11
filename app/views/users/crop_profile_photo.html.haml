@@ -15,7 +15,7 @@
   -box :class => "yui-b" do
     %h3= :profile_photo_crop.l  
 
-    = image_tag( @photo.public_filename, :id => 'photo' )
+    = image_tag( @photo.avatar.url, :id => 'photo' )
     
     = error_messages_for :photo
     - form_for(:photo, :url => crop_profile_photo_user_path(@user), :html => { :method => :put, :class => "MainForm" }) do |f|

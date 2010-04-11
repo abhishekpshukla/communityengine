@@ -260,22 +260,22 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_should_upload_avatar
     login_as :quentin
-    put :update, :id => users(:quentin).id, :user => {}, :avatar => {:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg')}
-    assert users(:quentin).reload.avatar.filename, "library.jpg"
+    put :update, :id => users(:quentin).id, :user => {}, :avatar => {:avatar => fixture_file_upload('/files/library.jpg', 'image/jpg')}
+    assert users(:quentin).reload.avatar.avatar_file_name, "library.jpg"
   end
   
   def test_should_not_delete_existing_avatar_if_file_field_is_blank
     login_as :quentin
-    put :update, :id => users(:quentin).id, :user => {}, :avatar => {:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg')}
-    assert users(:quentin).reload.avatar.filename, "library.jpg"
+    put :update, :id => users(:quentin).id, :user => {}, :avatar => {:avatar => fixture_file_upload('/files/library.jpg', 'image/jpg')}
+    assert users(:quentin).reload.avatar.avatar_file_name, "library.jpg"
 
     put :update, :id => users(:quentin).id, :user => {}
-    assert users(:quentin).reload.avatar.filename, "library.jpg"
+    assert users(:quentin).reload.avatar.avatar_file_name, "library.jpg"
   end
   
   def test_should_crop_profile_photo
     login_as :quentin
-    avatar = Photo.new(:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg'))
+    avatar = Photo.new(:avatar => fixture_file_upload('/files/library.jpg', 'image/jpg'))
     avatar.user = users(:quentin)
     avatar.save!
 
@@ -290,7 +290,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_should_upload_profile_photo
     login_as :quentin
 
-    put :upload_profile_photo, :id => users(:quentin), :avatar => {:uploaded_data => fixture_file_upload('/files/library.jpg', 'image/jpg')}
+    put :upload_profile_photo, :id => users(:quentin), :avatar => {:avatar => fixture_file_upload('/files/library.jpg', 'image/jpg')}
     
     assert_redirected_to crop_profile_photo_user_path(users(:quentin))    
   end

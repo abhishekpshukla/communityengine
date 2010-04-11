@@ -59,7 +59,7 @@
       - @photo_comments.each do |comment|
         %dl.vcard
           %dt.photo
-            = link_to(image_tag(comment.commentable.public_filename(:thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))
+            = link_to(image_tag(comment.commentable.avatar.url(:thumb), :width => '50', :height => '50'), user_photo_path(@user, comment.commentable))
           %dd.fn= "#{comment.username}" + " " + :says.l + ":"
           %dd
             = truncate_words(comment.comment, 10)
@@ -76,7 +76,7 @@
       -box :id => "photos" do
         %h3=:my_photos.l
         - @photos.each do |photo|
-          = link_to image_tag( photo.public_filename(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
+          = link_to image_tag( photo.avatar.url(:thumb), :class => "polaroid"), user_photo_path(@user, photo)
 
         %h6.all.right= link_to :view_all_my_photos.l, user_photos_path(@user)
         = "#{link_to(:add_a_photo.l, new_user_photo_path(@user))}" if @is_current_user

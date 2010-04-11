@@ -22,11 +22,11 @@
         = :want_to_upload_multiple_files_at_once.l
 
     - form_for(:photo, :url => user_photos_path(:user_id => current_user.id, :album_id => params[:album_id]), :html => {:multipart =>true, :class => "MainForm"} ) do |f|
-      = f.file_field :uploaded_data
+      = f.file_field :avatar
 
       %label
         %em
-          = " " + :megabyte_upload_limit.l(:count => AppConfig.photo['attachment_fu_options']['max_size'])
+          = " " + :megabyte_upload_limit.l(:count => AppConfig.photo['paperclip_options']['max_size'])
       %label 
         =:title.l + ":"
       = f.text_field :name, :size => 35
@@ -84,7 +84,7 @@
               %em
                 =:you_can_select_up_to_5_files_at_a_time.l
                 %br
-                = :megabyte_upload_limit_per_file.l(:count => AppConfig.photo['attachment_fu_options']['max_size'])
+                = :megabyte_upload_limit_per_file.l(:count => AppConfig.photo['paperclip_options']['max_size'])
         #divFileProgressContainer{:style=>"height: 75px;"}
         #thumbnails
       %p
