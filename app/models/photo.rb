@@ -3,7 +3,7 @@ class Photo < ActiveRecord::Base
   belongs_to :album
 
   has_attached_file :avatar,
-                    :style => AppConfig.photo['paperclip_options']['style'],
+                    :styles => AppConfig.photo['paperclip_options']['style'],
                     :storage => AppConfig.photo['paperclip_options']['storage']
                   
   #has_attachment prepare_options_for_attachment_fu(AppConfig.photo['attachment_fu_options'])
