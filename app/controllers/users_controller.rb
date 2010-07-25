@@ -124,9 +124,6 @@ class UsersController < BaseController
   end
   
   def update
-    p "xxxxxxxxxxxxxxxxxxxxxxx"
-    p params[:avatar]
-    p "xxxxxxxxxxxxxxxxxxxxxxx"
     @user.attributes      = params[:user]
     @metro_areas, @states = setup_locations_for(@user)
 
