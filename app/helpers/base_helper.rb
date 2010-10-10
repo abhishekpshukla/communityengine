@@ -115,11 +115,11 @@ module BaseHelper
 		title = app_base
 		case @controller.controller_name
 			when 'base'
-					title += tagline
-                        when 'pages'
-                          if @page and @page.title
-                            title = @page.title + ' &raquo; ' + app_base + tagline
-                          end
+        title += tagline
+      when 'pages'
+        if @page and @page.title
+          title = @page.title + ' &raquo; ' + app_base + tagline
+        end
 			when 'posts'
         if @post and @post.title
           title = @post.title + ' &raquo; ' + app_base + tagline
@@ -175,8 +175,8 @@ module BaseHelper
 
     if @page_title
       title = @page_title + ' &raquo; ' + app_base + tagline
-    elsif title == app_base          
-		  title = :showing.l + ' ' + @controller.controller_name.l + ' &raquo; ' + app_base + tagline
+    elsif title == app_base
+		  title = :showing.l + ' ' + controller.controller_name + ' &raquo; ' + app_base + tagline
     end
 
     title
